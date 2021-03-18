@@ -11,7 +11,7 @@ spec:
   rules:
   - from:
       - source:
-        principals: ["cluster.local/ns/default/sa/webapp"]
+          principals: ["cluster.local/ns/default/sa/webapp"]
     to:
     - operation:
         methods: ["GET"]
@@ -29,7 +29,7 @@ spec:
   rules:
   - from:
       - source:
-        principals: ["cluster.local/ns/default/sa/api-gateway", "cluster.local/ns/default/sa/position-simulator"]
+          principals: ["cluster.local/ns/default/sa/api-gateway", "cluster.local/ns/default/sa/position-simulator"]
     to:
     - operation:
         methods: ["GET"]
