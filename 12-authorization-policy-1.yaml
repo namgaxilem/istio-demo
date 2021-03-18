@@ -10,8 +10,8 @@ spec:
   action: ALLOW
   rules:
   - from:
-    - source:
-      principals: ["cluster.local/ns/default/sa/webapp"]
+      - source:
+        principals: ["cluster.local/ns/default/sa/webapp"]
     to:
     - operation:
         methods: ["GET"]
@@ -28,8 +28,8 @@ spec:
   action: ALLOW
   rules:
   - from:
-    - source:
-      principals: ["cluster.local/ns/default/sa/api-gateway", "cluster.local/ns/default/sa/position-simulator"]
+      - source:
+        principals: ["cluster.local/ns/default/sa/api-gateway", "cluster.local/ns/default/sa/position-simulator"]
     to:
     - operation:
         methods: ["GET"]
