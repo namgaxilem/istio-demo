@@ -33,3 +33,21 @@ spec:
     to:
     - operation:
         methods: ["GET"]
+---
+apiVersion: "security.istio.io/v1beta1"
+kind: "AuthorizationPolicy"
+metadata:
+  name: "to-vehicle-telemetry"
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: vehicle-telemetry
+  action: ALLOW
+  rules:
+  - from:
+      - source:
+          principals: ["cluster.local/ns/default/sa/position-tracker"]
+    to:
+    - operation:
+        methods: ["GET"]

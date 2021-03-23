@@ -1,0 +1,19 @@
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authentication/1-istio-init.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authentication/2-istio-install.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authentication/3-label-default-namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authentication/4-applications-default.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authentication/5-applications-noinjection.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authentication/6-enforce-mtls-only.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authorization/1-deny-all.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authorization/2-service-account.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authorization/3-apply-service-account.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authorization/4-authorization-webapp.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authorization/5-authorization-gateway-position-tracker.yaml
+kubectl apply -f https://raw.githubusercontent.com/namgaxilem/istio-demo/master/visual-demo-authorization/6-authorization-staff-service.yaml
+
+---------------------------
+
+kubectl exec -it position-tracker-  -c position-tracker -n default -- curl "http://fleetman-webapp.default" -s -o /dev/null -w "position-tracker.default to webapp.default: %{http_code}\n"
+kubectl exec -it vehicle-telemetry-  -c vehicle-telemtry -n noinjection -- curl "http://fleetman-webapp.default" -s -o /dev/null -w "vehicle-telemetry.noinjection to webapp.default: %{http_code}\n"
+kubectl exec -it position-tracker-  -c position-tracker -n default -- curl "http://fleetman-webapp.noinjection" -s -o /dev/null -w "position-tracker.default to webapp.noinjection: %{http_code}\n"
